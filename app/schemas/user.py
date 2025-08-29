@@ -1,22 +1,56 @@
 from pydantic import BaseModel, EmailStr
-from datetime import datetime
 
 
-class UserBase(BaseModel):
+class UserRegister(BaseModel):
+    """
+    Schema for user registration request.
+    """
     name: str
-    email: EmailStr
-
-class UserCreate(UserBase):
-    password: str   # plain password, will be hashed
-
-class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
-class UserOut(UserBase):
-    id: int
-    role: str
-    created_at: datetime
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "name": "John Doe",
+                "email": "john.doe@example.com",
+                "password": "strongpassword123",
+            }
+        }
+    }
 
-    class Config:
-        orm_mode = True
+
+class UserLogin(BaseModel):
+    """
+    Schema for user login request.
+    """
+    email: EmailStr
+    password: str
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "email": "john.doe@example.com",
+                "password": "strongpassword123",
+            }
+        }
+    }
+
+
+class UserResponse(BaseModel):
+    """
+    Schema for user response (returned after registration/login).
+    """
+    id: int
+    name: str
+    email: EmailStr
+
+    model_config = {
+        "json_schema_extra": {
+            "example": {
+                "id": 42,
+                "name": "John Doe",
+                "email": "john.doe@example.com",
+            }
+        }
+    }
