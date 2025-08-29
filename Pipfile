@@ -12,6 +12,7 @@ pyyaml = "*"
 pydantic = "*"
 fastapi = "*"
 pymysql = "*"
+email-validator = "*"
 
 [dev-packages]
 
