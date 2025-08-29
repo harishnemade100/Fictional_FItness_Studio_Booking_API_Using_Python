@@ -12,6 +12,10 @@ pyyaml = "*"
 pydantic = "*"
 fastapi = "*"
 pymysql = "*"
+email-validator = "*"
+passlib = "*"
+bcrypt = "*"
+pyjwt = "*"
 
 [dev-packages]
 
