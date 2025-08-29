@@ -6,7 +6,12 @@ name = "pypi"
 [packages]
 sqlalchemy = "*"
 datetime = "*"
+dotenv = "*"
+uvicorn = "*"
+pyyaml = "*"
 pydantic = "*"
+fastapi = "*"
+pymysql = "*"
 
 [dev-packages]
 

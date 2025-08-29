@@ -1,2 +1,7 @@
-DATABASE:
-  URL: "sqlite:///./fitness.db"
+LOCAL_DATABASE:
+    DATABASE_NAME: 'Fitness_database'
+    HOST: 'localhost'
+    PORT: '3306'
+    USER_NAME: 'root'
+    PASSWORD: 'Harish@123'
+ 

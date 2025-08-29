@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Python: Debug main.py",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/app/main.py",  // ✅ not /app/main.py
+      "console": "integratedTerminal",
+      "justMyCode": true,
+      "args": [
+        "--config", "${workspaceFolder}/configs/base_config.yaml"
+      ]
+    }
+  ]
+}

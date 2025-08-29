@@ -2,9 +2,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from datetime import datetime
-from app.database import Base
-
-
+from app.services.database import Base
 
 class Booking(Base):
     __tablename__ = "bookings"
