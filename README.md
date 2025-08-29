@@ -35,6 +35,41 @@ The system also handles **authentication & authorization** using JWT.
 
 ---
 
+fitness_api/
+├─ app/
+│ ├─ __init__.py
+│ ├─ main.py
+│ ├─ models/
+│ │ ├─ __init__.py
+│ │ ├─ classes.py
+│ │ ├─ user.py
+│ │ └─ booking.py
+│ ├─ routers/
+│ │ ├─ __init__.py
+│ │ ├─ class_router.py
+│ │ └─ booking_router.py
+│ ├─ schemas/
+│ │ ├─ __init__.py
+│ │ ├─ classes.py
+│ │ ├─ booking.py
+│ │ └─ user.py
+│ ├─ services/
+│ │ ├─ __init__.py
+│ │ ├─ database.py
+│ │ ├─ class_service.py
+│ │ └─ booking_service.py
+│ └─ utils/
+│ ├─ __init__.py
+│ └─ timezone.py
+├─ scripts/
+│ └─ seed.py
+├─ tests/
+│ └─ test_booking.py
+├─ requirements.txt
+└─ README.md
+
+---
+
 ## 📦 Tech Stack
 - **FastAPI** (Python 3.11+)
 - **SQLAlchemy + Alembic**
