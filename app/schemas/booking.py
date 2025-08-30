@@ -28,10 +28,14 @@ class BookingResponse(BaseModel):
     Schema for booking response.
     Returned by the API after a successful booking.
     """
-    id: int
+    message: str
+    booking_id: int
     class_id: int
-    user_id: int
-    booked_at: datetime
+    class_name: str
+    datetime: datetime
+    instructor: str
+    client_name: str
+    client_email: str
 
     """Sample Response Body"""
     
@@ -45,3 +49,18 @@ class BookingResponse(BaseModel):
             }
         }
     }
+
+
+class BookingInfo(BaseModel):
+    """
+    Schema for detailed booking information.
+    Used internally or for admin views.
+    """
+
+    booking_id: int
+    user_id: int
+    client_email: str
+    class_id: int
+    class_name: str
+    class_datetime: datetime
+    instructor: str

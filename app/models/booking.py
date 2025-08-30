@@ -14,4 +14,4 @@ class Booking(Base):
 
     # Relationships
     user = relationship("User", back_populates="bookings")  
-    class_ = relationship("Class", back_populates="bookings")
+    fitness_class = relationship("Class", back_populates="bookings")

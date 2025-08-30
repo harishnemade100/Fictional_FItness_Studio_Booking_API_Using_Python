@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from app.services.database import get_db
 from app.models.user import User
 from app.schemas.user import UserRegister, UserLogin, UserResponse
-from app.services.user_auth_service import hash_password, verify_password, create_access_token
+from app.services.user_auth_service import AuthService
 
 router = APIRouter(prefix="/users", tags=["Users"])
 
@@ -30,6 +30,8 @@ def register(
             - name (str): User's name
             - email (EmailStr): User's email
     """
+
+    auth_service = AuthService(db)
     user = db.query(User).filter(User.email == user_data.email).first()
     if user:
         raise HTTPException(
@@ -40,7 +42,7 @@ def register(
     new_user = User(
         name=user_data.name,
         email=user_data.email,
-        password_hash=hash_password(user_data.password),
+        password_hash=auth_service.hash_password(user_data.password),
     )
     db.add(new_user)
     db.commit()
@@ -64,6 +66,10 @@ def login(
     Raises:
         HTTPException: If email is not found or password is invalid.
     """
+    auth_service = AuthService(db)
+    verify_password = auth_service.verify_password
+    create_access_token = auth_service.create_access_token
+    
     user = db.query(User).filter(User.email == user_data.email).first()
     if not user or not verify_password(user_data.password, user.password_hash):
         raise HTTPException(

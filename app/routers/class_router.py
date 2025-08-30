@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List
 
 from app.services.database import get_db
-from app.services.class_service import get_upcoming_classes
+from app.services.class_service import ClassService
 from app.schemas.classes import ClassBase
 
 router = APIRouter(prefix="/classes", tags=["Classes"])
@@ -27,4 +27,8 @@ def list_classes(
             - total_slots (int): Total number of slots for the class
             - available_slots (int): Number of slots still available
     """
-    return get_upcoming_classes(db)
+    try:
+        service = ClassService(db)
+        return service.get_upcoming_classes(db)
+    except ValueError as e:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))

@@ -15,4 +15,4 @@ class Class(Base):
     available_slots = Column(Integer, nullable=False)
 
     # Relationships
-    bookings = relationship("Booking", back_populates="class_", cascade="all, delete-orphan")
+    bookings = relationship("Booking",  back_populates="fitness_class", cascade="all, delete-orphan")

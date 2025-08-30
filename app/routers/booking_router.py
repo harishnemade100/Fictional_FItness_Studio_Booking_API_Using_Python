@@ -3,15 +3,15 @@ from sqlalchemy.orm import Session
 from typing import List
 
 from app.services.database import get_db
-from app.services.booking_service import create_booking, get_bookings_by_email
-from app.schemas.booking import BookingRequest, BookingResponse
+from app.services.booking_service import BookingService
+from app.schemas.booking import BookingRequest, BookingResponse, BookingInfo
 
 router = APIRouter(prefix="/bookings", tags=["Bookings"])
 
 
 @router.post("/", response_model=BookingResponse, status_code=status.HTTP_201_CREATED)
 def book_class(
-    booking: BookingRequest,
+    booking_data: BookingRequest,
     db: Session = Depends(get_db)
 ) -> BookingResponse:
     """
@@ -32,12 +32,13 @@ def book_class(
             - booked_at (datetime): Timestamp of booking
     """
     try:
-        return create_booking(db, booking)
+        service = BookingService(db)
+        return service.create_booking(booking_data)
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
 
 
-@router.get("/", response_model=List[BookingResponse])
+@router.get("/", response_model=List[BookingInfo])
 def list_bookings(
     email: str,
     db: Session = Depends(get_db)
@@ -56,4 +57,9 @@ def list_bookings(
             - user_id (int): ID of the user
             - booked_at (datetime): Timestamp of booking
     """
-    return get_bookings_by_email(db, email)
+    try:
+        service = BookingService(db)
+        return service.get_bookings_by_email(email)
+    except ValueError as e:
+            raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
+
