@@ -1,65 +1,76 @@
-# 🏋️ Fictional Fitness Studio Booking API
+# 🏋️ Fitness Studio Booking API
 
 A **FastAPI-based Booking API** for a fictional fitness studio.  
-This project demonstrates **backend development skills** including API design, database integration, JWT authentication, and input validation.
+
+This project demonstrates **backend development skills** including API design, database integration, JWT authentication, and input validation.  
+
+---
+
+![API Preview](image.png)
 
 ---
 
 ## 🎯 Objective
-Build a **Booking API** for a fitness studio that offers classes such as Yoga, Zumba, and HIIT.  
+
+Build a **Booking API** for a fitness studio that offers classes such as **Yoga, Zumba, and HIIT**.  
 
 Clients should be able to:
-- View available upcoming classes
-- Book a spot in a class (if slots are available)
+
+- View available upcoming classes  
+- Book a spot in a class (if slots are available)  
 - Retrieve all their bookings by email  
 
-The system also handles **authentication & authorization** using JWT.
+The system also handles **authentication & authorization** using **JWT**.
 
 ---
 
-## 📌 Requirements Implemented
-✔️ **POST /users/register** → Register a new user  
-✔️ **POST /users/login** → Authenticate a user and return a **JWT token**  
-✔️ **GET /classes** → List all upcoming classes (name, date/time, instructor, available slots)  
-✔️ **POST /bookings** → Create a booking request (validates slot availability & reduces slots)  
-✔️ **GET /bookings** → Get all bookings made by a client email  
+## 📌 Requirements (Implemented)
+
+- ✔️ **POST /users/register** → Register a new user  
+- ✔️ **POST /users/login** → Authenticate a user and return a **JWT token**  
+- ✔️ **GET /classes** → List all upcoming classes (name, date/time, instructor, available slots)  
+- ✔️ **POST /bookings** → Create a booking request (validates slot availability & reduces slots)  
+- ✔️ **GET /bookings** → Get all bookings made by a client email  
 
 ---
 
 ## 🚀 Features
-- **JWT authentication** for secure booking
-- **SQLAlchemy ORM** with relationships (Users, Classes, Bookings)
-- **MySQL/SQLite** support
-- **Seed data** for demo classes
-- **Automatic API docs** via FastAPI (`/docs` & `/redoc`)
+
+- 🔐 **JWT authentication** for secure booking  
+- 🗄️ **SQLAlchemy ORM** with relationships (**Users, Classes, Bookings**)  
+- 🛢️ **MySQL/SQLite** support  
+- 🌱 **Seed data** for demo classes  
+- 📑 **Automatic API docs** via FastAPI (`/docs` & `/redoc`)  
 
 ---
 
+## 📂 Project Structure
+
 fitness_api/
 ├─ app/
-│ ├─ __init__.py
+│ ├─ init.py
 │ ├─ main.py
 │ ├─ models/
-│ │ ├─ __init__.py
+│ │ ├─ init.py
 │ │ ├─ classes.py
 │ │ ├─ user.py
 │ │ └─ booking.py
 │ ├─ routers/
-│ │ ├─ __init__.py
+│ │ ├─ init.py
 │ │ ├─ class_router.py
 │ │ └─ booking_router.py
 │ ├─ schemas/
-│ │ ├─ __init__.py
+│ │ ├─ init.py
 │ │ ├─ classes.py
 │ │ ├─ booking.py
 │ │ └─ user.py
 │ ├─ services/
-│ │ ├─ __init__.py
+│ │ ├─ init.py
 │ │ ├─ database.py
 │ │ ├─ class_service.py
 │ │ └─ booking_service.py
 │ └─ utils/
-│ ├─ __init__.py
+│ ├─ init.py
 │ └─ timezone.py
 ├─ scripts/
 │ └─ seed.py
@@ -68,20 +79,25 @@ fitness_api/
 ├─ requirements.txt
 └─ README.md
 
+yaml
+Copy code
+
 ---
 
 ## 📦 Tech Stack
-- **FastAPI** (Python 3.11+)
-- **SQLAlchemy + Alembic**
-- **Pydantic v2**
-- **MySQL** (with fallback to SQLite)
-- **Docker + Docker Compose**
+
+- **FastAPI** (Python 3.11+)  
+- **SQLAlchemy + Alembic**  
+- **Pydantic v2**  
+- **MySQL** (with fallback to SQLite)  
+- **Docker + Docker Compose**  
 
 ---
 
 ## ⚙️ Setup Instructions
 
 ### 1️⃣ Clone Repo
+
 ```bash
 git clone https://github.com/YOUR_USERNAME/fitness-api.git
 cd fitness-api
@@ -89,31 +105,27 @@ cd fitness-api
 bash
 Copy code
 # Create virtual environment
-python -m venv venv
+python -m venv venv  
 
 # Activate virtual environment
-source venv/bin/activate     # Mac/Linux
-venv\Scripts\activate        # Windows
+source venv/bin/activate     # Mac/Linux  
+venv\Scripts\activate        # Windows  
 
 # Install dependencies
 pip install pipenv
 pipenv install
-
----
-
-2️⃣ Create Environment File
-
+3️⃣ Create Environment File
 Copy .env.example → .env and configure:
 
+ini
+Copy code
 DATABASE_URL=sqlite:///./fitness.db   # or MySQL if preferred
 JWT_SECRET=supersecretkey
 JWT_ALGORITHM=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=30
-
-----
-
-
-# Run FastAPI app
+4️⃣ Run FastAPI App
+bash
+Copy code
 uvicorn app.main:app --reload
 📘 API Endpoints
 👤 Users
@@ -204,16 +216,11 @@ Copy code
   }
 ]
 🧪 Testing
-Swagger UI
-👉 http://localhost:8000/docs
+Swagger UI 👉 http://localhost:8000/docs
 
-ReDoc
-👉 http://localhost:8000/redoc
+ReDoc 👉 http://localhost:8000/redoc
 
-Postman
-Import the provided postman_collection.json file.
-
-Contains pre-configured requests for:
+You can also import the provided Postman collection (postman_collection.json) with pre-configured requests for:
 
 User Registration
 
@@ -230,29 +237,29 @@ Get Bookings by Email
 bash
 Copy code
 curl -X POST http://127.0.0.1:8000/users/register \
-  -H "Content-Type: application/json" \
-  -d '{"name": "Alice Johnson", "email": "alice@example.com", "password": "password123"}'
+   -H "Content-Type: application/json" \
+   -d '{"name": "Alice Johnson", "email": "alice@example.com", "password": "password123"}'
 🔑 Login (Get JWT Token)
 bash
 Copy code
 curl -X POST http://127.0.0.1:8000/users/login \
-  -H "Content-Type: application/json" \
-  -d '{"username": "alice@example.com", "password": "password123"}'
+   -H "Content-Type: application/json" \
+   -d '{"username": "alice@example.com", "password": "password123"}'
 🏋️ Get All Upcoming Classes
 bash
 Copy code
 curl -X GET "http://127.0.0.1:8000/classes/" \
-  -H "accept: application/json"
+   -H "accept: application/json"
 📅 Book a Class (JWT Required)
 bash
 Copy code
 curl -X POST "http://127.0.0.1:8000/bookings/" \
-  -H "accept: application/json" \
-  -H "Authorization: Bearer <JWT_TOKEN>" \
-  -H "Content-Type: application/json" \
-  -d '{"class_id": 1, "client_email": "john.doe@example.com", "client_name": "John Doe"}'
+   -H "accept: application/json" \
+   -H "Authorization: Bearer <JWT_TOKEN>" \
+   -H "Content-Type: application/json" \
+   -d '{"class_id": 1, "client_email": "john.doe@example.com", "client_name": "John Doe"}'
 📋 List Bookings by Email
 bash
 Copy code
 curl -X GET "http://127.0.0.1:8000/bookings/?email=alice@example.com" \
-  -H "accept: application/json"
+   -H "accept: application/json"
