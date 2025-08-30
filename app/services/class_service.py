@@ -13,7 +13,7 @@ class ClassService:
     def __init__(self, db: Session):
         self.db = db
 
-    def get_upcoming_classes(self, target_tz: str = "Asia/Kolkata") -> List[ClassBase]:
+    def get_upcoming_classes(self, db: Session, *, target_tz: str = "Asia/Kolkata") -> List[ClassBase]:
         """
         Fetch all upcoming classes, converting datetime to the target timezone.
         Args:

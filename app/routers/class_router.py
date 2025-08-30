@@ -29,6 +29,6 @@ def list_classes(
     """
     try:
         service = ClassService(db)
-        return service.get_upcoming_classes(db)
+        return service.get_upcoming_classes(db, target_tz="Asia/Kolkata")
     except ValueError as e:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(e))
