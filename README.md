@@ -99,6 +99,20 @@ venv\Scripts\activate        # Windows
 pip install pipenv
 pipenv install
 
+---
+
+2️⃣ Create Environment File
+
+Copy .env.example → .env and configure:
+
+DATABASE_URL=sqlite:///./fitness.db   # or MySQL if preferred
+JWT_SECRET=supersecretkey
+JWT_ALGORITHM=HS256
+ACCESS_TOKEN_EXPIRE_MINUTES=30
+
+----
+
+
 # Run FastAPI app
 uvicorn app.main:app --reload
 📘 API Endpoints
