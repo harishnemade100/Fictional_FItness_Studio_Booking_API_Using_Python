@@ -96,7 +96,8 @@ source venv/bin/activate     # Mac/Linux
 venv\Scripts\activate        # Windows
 
 # Install dependencies
-pip install -r requirements.txt
+pip install pipenv
+pipenv install
 
 # Run FastAPI app
 uvicorn app.main:app --reload
